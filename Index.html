@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Eleventh Hour Superpower</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Eleventh Hour Superpower — EDM DJ & Producer. Punk digital superhero energy." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <main class="container">
+
+    <!-- LOGO / HERO -->
+    <section class="hero">
+      <div class="logo">
+        <!-- SVG LOGO -->
+        <svg viewBox="0 0 600 160" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="10" width="580" height="140" rx="20" />
+          <text x="300" y="95" text-anchor="middle">
+            ELEVENTH HOUR
+            <tspan x="300" dy="40">SUPERPOWER</tspan>
+          </text>
+          <polygon points="520,40 560,80 520,120" />
+        </svg>
+      </div>
+
+      <p class="tagline">
+        EDM for last-minute heroes.<br />
+        When the robots win and the kaiju rise, press play.
+      </p>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about">
+      <h2>What Is This?</h2>
+      <p>
+        <strong>Eleventh Hour Superpower</strong> is an American electronic dance
+        music DJ and producer channeling chaotic energy into high-octane beats.
+      </p>
+      <p>
+        Imagine a punk digital superhero dropped into a neon city while
+        robots, kaiju, and corrupted algorithms tear reality apart —
+        that’s the sound.
+      </p>
+    </section>
+
+    <!-- COMING SOON -->
+    <section class="coming-soon">
+      <h2>Incoming Transmission</h2>
+      <p>
+        New music. New visuals. New noise.<br />
+        This site is still assembling its final form.
+      </p>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact">
+      <h2>Contact</h2>
+      <p>
+        Bookings, collaborations, or secret underground rave coordinates:
+      </p>
+      <a href="mailto:eleventhhoursuperpower@gmail.com">
+        eleventhhoursuperpower@gmail.com
+      </a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>
+        © <span id="year"></span> Eleventh Hour Superpower
+      </p>
+    </footer>
+
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
