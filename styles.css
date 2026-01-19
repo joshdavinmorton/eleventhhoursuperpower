@@ -1,107 +1,231 @@
-/* RESET */
+/* =========================================================
+   BASE / RESET
+========================================================= */
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* BASE */
+html, body {
+  height: 100%;
+}
+
 body {
-  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background: radial-gradient(circle at top, #0a0a0a, #000);
-  color: #f2f2f2;
-  line-height: 1.6;
+  font-family: 'Orbitron', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: black;
+  color: #ffffff;
+  overflow-x: hidden;
 }
 
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 3rem 1.5rem;
+/* =========================================================
+   IMMUTABLE BACKGROUND ART (DO NOT MODIFY IMAGE)
+========================================================= */
+
+.background {
+  position: fixed;
+  inset: 0;
+  background-image: url("assets/hero-bg.png");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  z-index: 0;
 }
 
-/* HERO */
-.hero {
+/* =========================================================
+   UI LAYER (ALL CONTENT FLOATS ABOVE BACKGROUND)
+========================================================= */
+
+.ui-layer {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* =========================================================
+   LOGO + BPM-SYNCED GLITCH / NEON
+   BPM = 128 → 0.46875s per beat
+========================================================= */
+
+.logo-container {
+  padding-top: 40px;
   text-align: center;
-  margin-bottom: 4rem;
 }
 
-.logo svg {
-  width: 100%;
-  max-width: 600px;
-  height: auto;
+.logo {
+  width: min(480px, 80vw);
+  max-width: 520px;
+  filter: drop-shadow(0 0 18px #00ffff);
 }
 
-.logo rect {
-  fill: #111;
-  stroke: #ff2cff;
-  stroke-width: 6;
+/* Neon pulse synced to BPM */
+.glitch {
+  animation: pulse 0.46875s infinite alternate;
 }
 
-.logo text {
-  fill: #00ffe0;
-  font-size: 42px;
-  font-weight: 900;
-  letter-spacing: 4px;
-  font-family: Impact, "Arial Black", sans-serif;
+@keyframes pulse {
+  from {
+    filter:
+      drop-shadow(0 0 10px #00ffff)
+      drop-shadow(0 0 20px #ff00ff);
+  }
+  to {
+    filter:
+      drop-shadow(0 0 26px #00ffff)
+      drop-shadow(0 0 46px #ff00ff);
+  }
 }
 
-.logo polygon {
-  fill: #ff2cff;
+/* Optional hover glitch jitter */
+.logo:hover {
+  animation: glitch 0.15s infinite;
 }
 
-.tagline {
-  margin-top: 1.5rem;
-  font-size: 1.1rem;
-  opacity: 0.85;
+@keyframes glitch {
+  0%   { transform: translate(0); }
+  20%  { transform: translate(-2px, 1px); }
+  40%  { transform: translate(2px, -1px); }
+  60%  { transform: translate(-1px, 2px); }
+  80%  { transform: translate(1px, -2px); }
+  100% { transform: translate(0); }
 }
 
-/* SECTIONS */
-section {
-  margin-bottom: 3.5rem;
+/* =========================================================
+   CLOCK OVERLAY (SVG – BACKGROUND UNAFFECTED)
+========================================================= */
+
+.clock {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 420px;
+  height: 420px;
+  pointer-events: none;
+  z-index: 2;
 }
 
-h2 {
-  font-size: 1.6rem;
-  margin-bottom: 1rem;
-  color: #ff2cff;
+/* Clock hands assume SVG classes */
+.hour-hand {
+  transform-origin: bottom center;
+  animation: hourDrift 240s infinite linear;
 }
 
-p {
-  margin-bottom: 1rem;
+.minute-hand {
+  transform-origin: bottom center;
+  animation: minuteDrift 30s infinite linear;
 }
 
-/* COMING SOON */
-.coming-soon {
-  background: linear-gradient(135deg, #111, #1a1a1a);
-  padding: 2rem;
-  border-radius: 12px;
-  border: 1px solid #333;
+@keyframes hourDrift {
+  from { transform: rotate(359deg); }
+  to   { transform: rotate(360deg); }
 }
 
-/* CONTACT */
-.contact a {
-  display: inline-block;
-  margin-top: 0.5rem;
-  color: #00ffe0;
+@keyframes minuteDrift {
+  from { transform: rotate(354deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* =========================================================
+   BOTTOM CONTENT OVERLAY (BELOW RED BORDER)
+========================================================= */
+
+.bottom-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.95),
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0)
+  );
+  padding: 140px 40px 70px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+}
+
+/* =========================================================
+   CONTENT PANELS
+========================================================= */
+
+.panel h2 {
+  font-size: 1.9rem;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  color: #00ffff;
+}
+
+.panel p {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: #dddddd;
+}
+
+.panel a {
+  color: #ff00ff;
   text-decoration: none;
+}
+
+/* =========================================================
+   EMBED PLACEHOLDERS
+========================================================= */
+
+.embed.placeholder {
+  border: 1px dashed rgba(0,255,255,0.4);
+  padding: 16px;
+  margin-top: 12px;
+  font-size: 0.95rem;
+  color: #aaaaaa;
+}
+
+/* =========================================================
+   EMAIL SIGNUP GLITCH BUTTON
+========================================================= */
+
+.glitch-button {
+  grid-column: span 2;
+  margin: 45px auto 0;
+  padding: 16px 42px;
+  font-size: 1.15rem;
   font-weight: bold;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #000000;
+  background: #00ffff;
+  border: none;
+  cursor: pointer;
+  animation: pulse 0.46875s infinite alternate;
 }
 
-.contact a:hover {
-  text-decoration: underline;
+.glitch-button:hover {
+  background: #ff00ff;
+  color: #ffffff;
 }
 
-/* FOOTER */
-footer {
-  text-align: center;
-  font-size: 0.85rem;
-  opacity: 0.6;
-  margin-top: 3rem;
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+  .bottom-overlay {
+    grid-template-columns: 1fr;
+    padding: 120px 24px 60px;
+  }
+
+  .glitch-button {
+    grid-column: span 1;
+  }
 }
 
-/* RESPONSIVE */
 @media (max-width: 600px) {
-  .logo text {
-    font-size: 32px;
+  .logo {
+    width: 85vw;
+  }
+
+  .clock {
+    width: 300px;
+    height: 300px;
   }
 }
