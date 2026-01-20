@@ -97,6 +97,11 @@ body {
   100% { transform: translate(0); }
 }
 
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 10px rgba(0,255,255,0.3); }
+  100% { box-shadow: 0 0 26px rgba(255,0,255,0.6); }
+}
+
 /* =========================================================
    CLOCK OVERLAY (SVG – BACKGROUND UNAFFECTED)
 ========================================================= */
@@ -148,7 +153,7 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 50px;
 
-  margin-top: 55vh; /* ⬅ pushes UI below the hero action */
+  margin-top: clamp(700px, 75vh, 980px); /* ⬅ pushes UI below the hero action */
 }
 
 /* =========================================================
@@ -180,10 +185,37 @@ body {
   padding: 28px 32px;
   border-radius: 6px;
   backdrop-filter: blur(6px);
+  animation: glowPulse 0.46875s infinite alternate;
 }
 
 .panel + .panel {
   margin-top: 24px;
+}
+
+.expandable .panel-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.expandable.open .panel-body {
+  max-height: 500px;
+}
+
+.panel-header {
+  background: none;
+  border: none;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  color: inherit;
+}
+
+.chevron {
+  font-size: 1.6rem;
+  color: #00ffff;
 }
 
 /* =========================================================
@@ -246,4 +278,20 @@ body {
     width: 300px;
     height: 300px;
   }
+}
+
+.signup-form {
+  grid-column: span 2;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.signup-form input {
+  padding: 14px 18px;
+  font-size: 1rem;
+  background: rgba(0,0,0,0.6);
+  border: 1px solid #00ffff;
+  color: #fff;
 }
