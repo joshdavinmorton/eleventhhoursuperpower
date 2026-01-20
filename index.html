@@ -76,17 +76,23 @@
       </div>
 
       <!-- EMAIL SIGNUP -->
-      <form class="signup-form">
-        <input
-          type="email"
-          placeholder="your@email.com"
-          aria-label="Email address"
-          required>
-        <button type="submit" class="glitch-button">
+      <div class="signup">
+        <button class="glitch-button" id="signupToggle">
           Join the Signal
         </button>
-      </form>
 
+        <form class="signup-form hidden">
+          <input type="email" placeholder="you@signal.net" required>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+
+      <script>
+      document.getElementById('signupToggle').addEventListener('click', () => {
+        document.querySelector('.signup-form').classList.toggle('hidden');
+      });
+      </script>
+      
     </section>
   </div>
 
