@@ -148,7 +148,7 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 50px;
 
-  margin-top: 65vh; /* ⬅ pushes UI below the hero action */
+  margin-top: 55vh; /* ⬅ pushes UI below the hero action */
 }
 
 /* =========================================================
