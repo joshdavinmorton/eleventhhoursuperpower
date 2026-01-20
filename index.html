@@ -1,33 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Eleventh Hour Superpower</title>
+
+  <!-- Main stylesheet -->
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Optional: Google Font (Orbitron) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
+
 <body>
+
+  <!-- IMMUTABLE BACKGROUND ART -->
   <div class="background"></div>
 
+  <!-- UI LAYER -->
   <div class="ui-layer">
+
+    <!-- LOGO AREA (logo file will be added later) -->
     <header class="logo-container">
-      <img src="assets/logo-transparent.png" class="logo glitch" alt="Eleventh Hour Superpower">
+      <!-- Safe even if logo file does not exist yet -->
+      <!-- Replace src once SVG/PNG logo is ready -->
+      <!-- <img src="assets/ehsp-logo-transparent.png" class="logo glitch" alt="Eleventh Hour Superpower"> -->
     </header>
 
+    <!-- BOTTOM CONTENT OVERLAY -->
     <section class="bottom-overlay">
-      <div class="panel">
-        <h2>About</h2>
-        <p>
-          Eleventh Hour Superpower is a Houston, Texas based EDM DJ and producer.
-          Contact at <a href="mailto:thekobayashimaru@gmail.com">thekobayashimaru@gmail.com</a>.
-        </p>
+
+      <!-- ABOUT PANEL -->
+      <div class="panel expandable">
+        <button class="panel-header" type="button">
+          <h2>About</h2>
+          <span class="chevron">+</span>
+        </button>
+        <div class="panel-body">
+          <p>
+            Eleventh Hour Superpower is a Houston, Texas based EDM DJ and producer.
+            Contact at
+            <a href="mailto:thekobayashimaru@gmail.com">thekobayashimaru@gmail.com</a>.
+          </p>
+        </div>
       </div>
 
-      <div class="panel">
-        <h2>Latest Releases</h2>
-        <div class="embed placeholder">SoundCloud — coming soon</div>
-        <div class="embed placeholder">Bandcamp — coming soon</div>
+      <!-- LATEST RELEASES PANEL -->
+      <div class="panel expandable">
+        <button class="panel-header" type="button">
+          <h2>Latest Releases</h2>
+          <span class="chevron">+</span>
+        </button>
+        <div class="panel-body">
+
+          <!-- SoundCloud embed placeholder -->
+          <iframe
+            class="embed"
+            scrolling="no"
+            frameborder="no"
+            allow="autoplay"
+            src="">
+          </iframe>
+
+          <!-- Bandcamp embed placeholder -->
+          <iframe
+            class="embed"
+            frameborder="0"
+            seamless
+            src="">
+          </iframe>
+
+        </div>
       </div>
 
-      <button class="signup glitch-button">Join the Signal</button>
+      <!-- EMAIL SIGNUP -->
+      <form class="signup-form">
+        <input
+          type="email"
+          placeholder="your@email.com"
+          aria-label="Email address"
+          required>
+        <button type="submit" class="glitch-button">
+          Join the Signal
+        </button>
+      </form>
+
     </section>
   </div>
+
+  <!-- EXPANDABLE PANELS SCRIPT -->
+  <script>
+    document.querySelectorAll('.panel-header').forEach(button => {
+      button.addEventListener('click', () => {
+        const panel = button.parentElement;
+        panel.classList.toggle('open');
+
+        const chevron = button.querySelector('.chevron');
+        chevron.textContent = panel.classList.contains('open') ? '−' : '+';
+      });
+    });
+  </script>
+
+  <!-- AMBIENT PARALLAX (UI ONLY, BACKGROUND UNTOUCHED) -->
+  <script>
+    window.addEventListener('mousemove', e => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 6;
+      const y = (e.clientY / window.innerHeight - 0.5) * 6;
+
+      const ui = document.querySelector('.ui-layer');
+      ui.style.transform = `translate(${x}px, ${y}px)`;
+    });
+  </script>
+
 </body>
+</html>
