@@ -24,10 +24,13 @@ body {
 ========================================================= */
 
 .background {
-  position: fixed;
-  inset: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 140vh; /* taller than viewport to preserve full poster */
   background-image: url("assets/hero-bg.png");
-  background-size: cover;
+  background-size: contain;
   background-position: center top;
   background-repeat: no-repeat;
   z-index: 0;
@@ -40,7 +43,7 @@ body {
 .ui-layer {
   position: relative;
   z-index: 1;
-  min-height: 100vh;
+  min-height: 140vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -144,6 +147,8 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 50px;
+
+  margin-top: 65vh; /* ⬅ pushes UI below the hero action */
 }
 
 /* =========================================================
@@ -151,8 +156,9 @@ body {
 ========================================================= */
 
 .panel h2 {
-  font-size: 1.9rem;
-  margin-bottom: 14px;
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #00ffff;
 }
@@ -166,6 +172,18 @@ body {
 .panel a {
   color: #ff00ff;
   text-decoration: none;
+}
+
+.panel {
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(0, 255, 255, 0.25);
+  padding: 28px 32px;
+  border-radius: 6px;
+  backdrop-filter: blur(6px);
+}
+
+.panel + .panel {
+  margin-top: 24px;
 }
 
 /* =========================================================
